@@ -1,0 +1,43 @@
+{
+  "name": "map-json-by-json",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Template-driven declarative JSON transformation engine where the target template is the source of truth.",
+  "main": "index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "default": "./index.js"
+    },
+    "./v1": "./src/v1/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "map-json-by-json",
+    "json-mapper",
+    "json-template",
+    "json-transform",
+    "etl",
+    "json-schema"
+  ],
+  "author": "KeshavSoft",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keshavsoft/map-json-by-json.git"
+  },
+  "bugs": {
+    "url": "https://github.com/keshavsoft/map-json-by-json/issues"
+  },
+  "homepage": "https://github.com/keshavsoft/map-json-by-json#readme"
+}
