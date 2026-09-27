@@ -1,26 +1,41 @@
 {
   "name": "map-json-by-json",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "description": "Template-driven declarative JSON transformation engine where the target template is the source of truth.",
   "main": "index.js",
   "module": "./src/index.js",
+  "browser": "./src/v2/browser.js",
+  "bin": {
+    "map-json-by-json": "./bin/map-json-by-json.js"
+  },
   "exports": {
     ".": {
       "import": "./index.js",
       "default": "./index.js"
     },
-    "./v1": "./src/v1/index.js",
+    "./v2": "./src/v2/index.js",
+    "./browser": "./src/v2/browser.js",
+    "./global": "./src/v2/global.js",
     "./package.json": "./package.json"
   },
   "files": [
     "index.js",
-    "src",
+    "src/v2",
+    "bin",
+    "scripts",
+    "examples",
+    "docs",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "test": "node --test"
+    "test": "node --test test/map.test.js",
+    "test:v2": "node --test test/map.test.js",
+    "docs:serve": "node scripts/serve-docs.js"
   },
   "keywords": [
     "map-json-by-json",

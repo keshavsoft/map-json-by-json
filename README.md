@@ -124,11 +124,34 @@ const result = mapJson({
 
 ---
 
-## Dynamic Multi-Version Support
+## Versioned Entry Points
 
-`map-json-by-json` includes dynamic version discovery:
-* `import { mapJson } from "map-json-by-json"` — loads the latest version dynamically (`v1`).
-* `import { mapJson } from "map-json-by-json/v1"` — loads `v1` explicitly.
+The package root and `map-json-by-json/v2` both expose the v2 API. v1 is not part of this package release.
+
+## Interfaces and guides
+
+- [Interactive playground](docs/index.html)
+- [JavaScript API](docs/api.html)
+- [CLI](docs/cli.html)
+- [HTTP endpoint example](docs/endpoint.html)
+- [Browser and CDN](docs/browser.html)
+- [Data examples](docs/examples.html)
+
+## CLI quick start
+
+```sh
+npx map-json-by-json --template template.json --input source.json
+```
+
+For standard input, pass `--input -`. See the [CLI guide](docs/cli.html) for file output and error handling.
+
+## Local documentation
+
+```sh
+npm run docs:serve
+```
+
+Open the local URL printed by the command. The playground loads the working tree's v2 module in local mode.
 
 ---
 

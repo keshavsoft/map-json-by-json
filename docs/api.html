@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JavaScript API — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="api.html" aria-current="page">API</a>
+    <a href="cli.html">CLI</a><a href="endpoint.html">HTTP endpoint</a>
+    <a href="browser.html">Browser / CDN</a><a href="examples.html">Data examples</a>
+  </nav>
+  <h1>JavaScript API</h1>
+  <p class="lede">Use the same mapping function in Node.js and browser modules. The package root exposes v2.</p>
+  <section class="card"><h2>Install and import</h2>
+    <pre><code>npm install map-json-by-json</code></pre>
+    <pre><code>import { mapJson, meta } from "map-json-by-json";
+// Or import the versioned entry point:
+import mapJsonV2 from "map-json-by-json/v2";</code></pre>
+  </section>
+  <section class="card"><h2>Call signature</h2>
+    <pre><code>mapJson(template, source)
+mapJson({ inTemplate: template, inSource: source })</code></pre>
+    <p>The result follows the template shape. A source array maps to an array of results. Missing source fields are omitted from the mapped object.</p>
+  </section>
+  <section class="card"><h2>Template rules</h2>
+    <ul>
+      <li>A string selects a source property or dot path.</li>
+      <li><code>{ $from: "PATH", ...fields }</code> maps a source collection recursively.</li>
+      <li><code>{ $value: value }</code> inserts a constant.</li>
+      <li>A function rule receives the current source item and returns a computed value.</li>
+      <li>Nested objects reshape fields from the same source object.</li>
+    </ul>
+  </section>
+  <section class="card"><h2>Example</h2>
+    <pre><code>const template = {
+  name: "CUSTOMER.NAME",
+  total: "TOTAL",
+  lines: {
+    $from: "LINES",
+    label: "ITEM",
+    amount: "AMOUNT"
+  }
+};
+
+const result = mapJson(template, source);</code></pre>
+    <p class="muted">See the <a href="examples.html">data examples</a> and <a href="index.html">playground</a> for complete input/output pairs.</p>
+  </section>
+</main></body>
+</html>

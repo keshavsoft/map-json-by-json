@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CLI — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="api.html">API</a>
+    <a href="cli.html" aria-current="page">CLI</a><a href="endpoint.html">HTTP endpoint</a>
+    <a href="browser.html">Browser / CDN</a><a href="examples.html">Data examples</a>
+  </nav>
+  <h1>Command line</h1>
+  <p class="lede">Transform JSON files or pipe source JSON through the v2 mapper.</p>
+  <section class="card"><h2>Run with npx</h2>
+    <pre><code>npx map-json-by-json --template template.json --input source.json</code></pre>
+    <p>This repository includes a ready-to-run example:</p>
+    <pre><code>node bin/map-json-by-json.js --template examples/order-template.json --input examples/order-source.json</code></pre>
+    <p>Install the package locally to use the command repeatedly:</p>
+    <pre><code>npm install map-json-by-json
+npx map-json-by-json --template template.json --input source.json --output result.json</code></pre>
+  </section>
+  <section class="card"><h2>Options</h2>
+    <ul>
+      <li><code>--template, -t</code>: path to a JSON template file.</li>
+      <li><code>--input, -i</code>: source JSON file, or <code>-</code> to read standard input.</li>
+      <li><code>--output, -o</code>: write formatted JSON to a file. Defaults to standard output.</li>
+      <li><code>--help, -h</code>: show usage.</li>
+      <li><code>--version, -v</code>: show the engine version.</li>
+    </ul>
+  </section>
+  <section class="card"><h2>Pipes</h2>
+    <pre><code>cat source.json | npx map-json-by-json --template template.json --input -</code></pre>
+    <p>Templates are JSON, so they support string paths, <code>$from</code>, and <code>$value</code>. Use the JavaScript API when a template needs function transformers.</p>
+  </section>
+</main></body>
+</html>

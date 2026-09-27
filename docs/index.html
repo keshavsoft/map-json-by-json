@@ -230,6 +230,22 @@
       margin: 1rem 0;
       overflow-x: auto;
     }
+
+    .page-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem 1.2rem;
+      margin: -1rem 0 2rem;
+    }
+
+    .page-nav a {
+      color: #a5f3fc;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .page-nav a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -242,6 +258,14 @@
         Template-driven JSON transformer where the target contract is the source of truth. Extract, reshape, and restructure complex datasets effortlessly.
       </p>
     </header>
+
+    <nav class="page-nav" aria-label="Documentation">
+      <a href="api.html">API</a>
+      <a href="cli.html">CLI</a>
+      <a href="endpoint.html">HTTP endpoint</a>
+      <a href="browser.html">Browser / CDN</a>
+      <a href="examples.html">Data examples</a>
+    </nav>
 
     <div class="grid">
       <!-- Input 1: Target Template -->
@@ -311,7 +335,11 @@ const clean = mapJson(template, rawData);</div>
   </div>
 
   <script type="module">
-    import { mapJson } from "../src/index.js";
+    const localMode = new URLSearchParams(location.search).has("local");
+    const moduleUrl = localMode
+      ? "/src/v2/browser.js"
+      : "https://cdn.jsdelivr.net/npm/map-json-by-json@2.0.0/src/v2/browser.js";
+    const { mapJson } = await import(moduleUrl);
 
     const defaultTemplate = {
       orderId: "ORDER_NO",

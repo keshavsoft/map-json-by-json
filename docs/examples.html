@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data examples — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="api.html">API</a>
+    <a href="cli.html">CLI</a><a href="endpoint.html">HTTP endpoint</a>
+    <a href="browser.html">Browser / CDN</a><a href="examples.html" aria-current="page">Data examples</a>
+  </nav>
+  <h1>Data examples</h1>
+  <p class="lede">Keep templates focused on the output contract. Map only the source values the consumer needs.</p>
+  <section class="card"><h2>Input data</h2>
+    <pre><code>{
+  "ORDER_NO": 501,
+  "CUSTOMER": { "NAME": "Acme Global" },
+  "LINES": [
+    { "SKU": "Cable", "AMOUNT": 45.5 },
+    { "SKU": "Connector", "AMOUNT": 12 }
+  ]
+}</code></pre>
+  </section>
+  <section class="card"><h2>Template</h2>
+    <pre><code>{
+  "orderId": "ORDER_NO",
+  "customerName": "CUSTOMER.NAME",
+  "items": {
+    "$from": "LINES",
+    "name": "SKU",
+    "amount": "AMOUNT"
+  }
+}</code></pre>
+  </section>
+  <section class="card"><h2>Mapped output</h2>
+    <pre><code>{
+  "orderId": 501,
+  "customerName": "Acme Global",
+  "items": [
+    { "name": "Cable", "amount": 45.5 },
+    { "name": "Connector", "amount": 12 }
+  ]
+}</code></pre>
+    <p><a href="index.html">Try the interactive playground</a> to edit templates and source data in your browser.</p>
+    <p>The same sample is stored in <code>examples/order-template.json</code> and <code>examples/order-source.json</code> for CLI testing.</p>
+  </section>
+</main></body>
+</html>

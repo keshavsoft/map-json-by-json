@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser and CDN — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="api.html">API</a>
+    <a href="cli.html">CLI</a><a href="endpoint.html">HTTP endpoint</a>
+    <a href="browser.html" aria-current="page">Browser / CDN</a><a href="examples.html">Data examples</a>
+  </nav>
+  <h1>Browser and CDN</h1>
+  <p class="lede">The v2 browser entry is an ES module and has no Node.js runtime dependency.</p>
+  <section class="card"><h2>Install in a browser app</h2>
+    <pre><code>npm install map-json-by-json</code></pre>
+    <pre><code>import { mapJson } from "map-json-by-json/browser";
+
+const result = mapJson(template, source);</code></pre>
+  </section>
+  <section class="card"><h2>Use from a pinned CDN release</h2>
+    <pre><code>&lt;script type="module"&gt;
+  import { mapJson } from "https://cdn.jsdelivr.net/npm/map-json-by-json@2.0.0/src/v2/browser.js";
+
+  const result = mapJson({ name: "NAME" }, { NAME: "Cable" });
+  document.querySelector("#result").textContent = JSON.stringify(result);
+&lt;/script&gt;</code></pre>
+    <p>Pin a release version in production pages so an update cannot change behavior without a deployment.</p>
+  </section>
+  <section class="card"><h2>Global registration</h2>
+    <p>Module imports are side-effect free. For legacy integrations that expect <code>globalThis.ks</code>, import the explicit <code>map-json-by-json/global</code> entry.</p>
+  </section>
+</main></body>
+</html>

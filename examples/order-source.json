@@ -1,0 +1,16 @@
+{
+  "ORDER_NO": 501,
+  "CUSTOMER": {
+    "NAME": "Acme Global"
+  },
+  "LINES": [
+    {
+      "SKU": "Cable",
+      "AMOUNT": 45.5
+    },
+    {
+      "SKU": "Connector",
+      "AMOUNT": 12
+    }
+  ]
+}

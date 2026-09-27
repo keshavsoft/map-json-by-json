@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTTP endpoint — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="api.html">API</a>
+    <a href="cli.html">CLI</a><a href="endpoint.html" aria-current="page">HTTP endpoint</a>
+    <a href="browser.html">Browser / CDN</a><a href="examples.html">Data examples</a>
+  </nav>
+  <h1>HTTP endpoint example</h1>
+  <p class="lede">The package is a mapper library. This optional Node.js example wraps it in a small local HTTP endpoint.</p>
+  <section class="card"><h2>Start the example server</h2>
+    <pre><code>node examples/http-server.js
+# Listening on http://localhost:3000</code></pre>
+  </section>
+  <section class="card"><h2>POST /map</h2>
+    <pre><code>curl -X POST http://localhost:3000/map \
+  -H "Content-Type: application/json" \
+  -d '{
+    "template": { "label": "NAME", "price": "PRICE" },
+    "source": { "NAME": "Cable", "PRICE": 12.5 }
+  }'</code></pre>
+    <p>Response:</p>
+    <pre><code>{ "result": { "label": "Cable", "price": 12.5 } }</code></pre>
+  </section>
+  <section class="card"><h2>Request limits</h2>
+    <p>The sample accepts JSON POST requests up to 1 MiB and returns JSON errors for invalid input. Add authentication, authorization, rate limiting, and application-specific validation before exposing a service publicly.</p>
+  </section>
+</main></body>
+</html>

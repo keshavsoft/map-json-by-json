@@ -1,0 +1,9 @@
+{
+  "orderId": "ORDER_NO",
+  "customerName": "CUSTOMER.NAME",
+  "items": {
+    "$from": "LINES",
+    "name": "SKU",
+    "amount": "AMOUNT"
+  }
+}

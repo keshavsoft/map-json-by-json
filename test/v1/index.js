@@ -1,11 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mapJson, meta } from "../src/index.js";
+import mapV1, { mapJson, meta } from "../../src/v1/index.js";
 
-test("loads the v2 engine as the package default", () => {
-    assert.equal(meta.version, "v2.0");
+test("loads the v1 engine entry points", () => {
+    assert.equal(meta.version, "v1.0");
     assert.equal(typeof mapJson, "function");
-    assert.equal(globalThis.ks, undefined);
+    assert.equal(typeof mapV1, "function");
 });
 
 test("extracts and maps flat fields based on template", () => {
@@ -145,6 +145,7 @@ test("supports object parameter convention { inTemplate, inSource }", () => {
     const inTemplate = { title: "NAME" };
     const inSource = { NAME: "Hello" };
     assert.deepEqual(mapJson({ inTemplate, inSource }), { title: "Hello" });
+    assert.deepEqual(mapV1({ inTemplate, inSource }), { title: "Hello" });
 });
 
 test("safely handles null, undefined, and non-object inputs", () => {
@@ -155,13 +156,11 @@ test("safely handles null, undefined, and non-object inputs", () => {
     assert.deepEqual(mapJson({ A: "a" }, []), []);
 });
 
-test("registers on globalThis.ks through the explicit global entry", async () => {
-    const { mapJson: globalMapJson } = await import("../src/v2/global.js");
-    assert.equal(typeof globalMapJson, "function");
+test("registers on globalThis.ks", () => {
     assert.equal(typeof globalThis.ks, "object");
     assert.equal(typeof globalThis.ks.mapJson, "function");
     assert.equal(typeof globalThis.ks["map-json-by-json"], "object");
-    assert.equal(globalThis.ks["map-json-by-json"].meta.version, "v2.0");
+    assert.equal(globalThis.ks["map-json-by-json"].meta.version, "v1.0");
 
     const res = globalThis.ks.mapJson({ out: "in" }, { in: 123 });
     assert.deepEqual(res, { out: 123 });
