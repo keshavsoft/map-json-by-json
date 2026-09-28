@@ -126,16 +126,27 @@ const result = mapJson({
 
 ## Versioned Entry Points
 
-The package root and `map-json-by-json/v2` both expose the v2 API. v1 is not part of this package release.
+The package root and `map-json-by-json/v2` both expose the v2 API. `map-json-by-json/v3` exposes the strict mapper, which reads a mapping template and source JSON without mutating either input and returns a new result. v1 is not part of this package release.
 
 ## Interfaces and guides
 
 - [Interactive playground](docs/index.html)
+- [Install and use with npm, npx, CLI, or CDN](docs/usage.html)
 - [JavaScript API](docs/api.html)
 - [CLI](docs/cli.html)
 - [HTTP endpoint example](docs/endpoint.html)
 - [Browser and CDN](docs/browser.html)
+- [v3 strict mapper](docs/v3.html)
 - [Data examples](docs/examples.html)
+
+## Build the V2 playground
+
+```sh
+npm install
+npm run docs:build
+```
+
+Vite writes the built site to `docs/dist/v2` for GitHub Pages or another static host.
 
 ## CLI quick start
 

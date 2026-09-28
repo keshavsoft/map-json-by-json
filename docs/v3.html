@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>v3 strict mapper — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="usage.html">Install and use</a>
+    <a href="api.html">API</a><a href="cli.html">CLI</a>
+    <a href="browser.html">Browser / CDN</a><a href="v3.html" aria-current="page">v3 strict mapper</a>
+  </nav>
+  <h1>v3 strict mapper</h1>
+  <p class="lede">Pass a JSON mapping template first and source JSON second. V3 reads both inputs without changing them and returns newly created JSON.</p>
+
+  <section class="card"><h2>Import v3</h2>
+    <pre><code>npm install map-json-by-json</code></pre>
+    <pre><code>import { mapJson } from "map-json-by-json/v3";
+
+const template = {
+  name: "person.fullName",
+  city: "person.address.city",
+  tags: { $from: "labels", value: "text" },
+  active: { $value: true }
+};
+
+const source = {
+  person: { fullName: "Asha Rao", address: { city: "Pune" } },
+  labels: [{ text: "customer" }, { text: "verified" }]
+};
+
+const result = mapJson(template, source);
+// { name: "Asha Rao", city: "Pune", tags: [{ value: "customer" }, { value: "verified" }], active: true }</code></pre>
+  </section>
+
+  <section class="card"><h2>Strict behavior</h2>
+    <ul>
+      <li>The first argument is a plain JSON mapping object. String values name paths in the second argument.</li>
+      <li>The second argument is a JSON object or an array of JSON objects.</li>
+      <li>Input objects are never changed. The returned object and nested values are new copies.</li>
+      <li>Every requested source path must exist. A missing path throws an error that names the template field.</li>
+      <li>Inputs must contain JSON values only. Functions, circular references, sparse arrays, and non-plain objects are rejected.</li>
+      <li>Use <code>{ "$value": "literal" }</code> when a string should be returned as a literal.</li>
+    </ul>
+  </section>
+
+  <section class="card"><h2>Mapping a collection</h2>
+    <pre><code>const template = {
+  invoiceNo: "number",
+  lines: {
+    $from: "items",
+    product: "name",
+    quantity: "qty"
+  }
+};
+
+const result = mapJson(template, {
+  number: "INV-10",
+  items: [
+    { name: "Cable", qty: 3 },
+    { name: "Adapter", qty: 1 }
+  ]
+});</code></pre>
+    <p>V2 remains available at the package root and at <code>map-json-by-json/v2</code>. See <a href="api.html">the API guide</a> for v2's flexible rules.</p>
+  </section>
+</main></body>
+</html>

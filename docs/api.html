@@ -9,9 +9,9 @@
 <body><main class="shell">
   <a class="brand" href="index.html">map-json-by-json</a>
   <nav class="nav" aria-label="Documentation">
-    <a href="index.html">Playground</a><a href="api.html" aria-current="page">API</a>
+    <a href="index.html">Playground</a><a href="usage.html">Install and use</a><a href="api.html" aria-current="page">API</a>
     <a href="cli.html">CLI</a><a href="endpoint.html">HTTP endpoint</a>
-    <a href="browser.html">Browser / CDN</a><a href="examples.html">Data examples</a>
+    <a href="browser.html">Browser / CDN</a><a href="v3.html">v3 strict mapper</a><a href="examples.html">Data examples</a>
   </nav>
   <h1>JavaScript API</h1>
   <p class="lede">Use the same mapping function in Node.js and browser modules. The package root exposes v2.</p>
@@ -34,6 +34,9 @@ mapJson({ inTemplate: template, inSource: source })</code></pre>
       <li>A function rule receives the current source item and returns a computed value.</li>
       <li>Nested objects reshape fields from the same source object.</li>
     </ul>
+  </section>
+  <section class="card"><h2>Strict v3</h2>
+    <p>Import <code>map-json-by-json/v3</code> when missing source paths should throw and both JSON inputs must remain unchanged. V3 returns a detached output tree. Read the <a href="v3.html">v3 strict mapper guide</a> for its JSON input rules.</p>
   </section>
   <section class="card"><h2>Example</h2>
     <pre><code>const template = {

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install and use — map-json-by-json</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body><main class="shell">
+  <a class="brand" href="index.html">map-json-by-json</a>
+  <nav class="nav" aria-label="Documentation">
+    <a href="index.html">Playground</a><a href="usage.html" aria-current="page">Install and use</a>
+    <a href="api.html">API</a><a href="cli.html">CLI</a>
+    <a href="browser.html">Browser / CDN</a><a href="v3.html">v3 strict mapper</a>
+  </nav>
+  <h1>Install and use</h1>
+  <p class="lede">Choose a package import for an application, npx for a one-off command, or a CDN module for a browser page.</p>
+
+  <section class="card"><h2>npm package import (v2)</h2>
+    <pre><code>npm install map-json-by-json</code></pre>
+    <pre><code>import { mapJson } from "map-json-by-json";
+
+const template = { displayName: "customer.name", total: "amount" };
+const source = { customer: { name: "Asha" }, amount: 42 };
+const result = mapJson(template, source);
+// { displayName: "Asha", total: 42 }</code></pre>
+    <p>The package root remains v2. Import v3 explicitly with <code>map-json-by-json/v3</code>.</p>
+  </section>
+
+  <section class="card"><h2>One-off run with npx</h2>
+    <p>Put the mapping template and input data in JSON files, then run:</p>
+    <pre><code>npx map-json-by-json --template template.json --input source.json --output result.json</code></pre>
+    <p>Omit <code>--output</code> to print the result. Use <code>--input -</code> to read JSON from standard input.</p>
+  </section>
+
+  <section class="card"><h2>Install and run the CLI</h2>
+    <p>Install the package globally if you use the command in multiple projects:</p>
+    <pre><code>npm install --global map-json-by-json
+map-json-by-json --template template.json --input source.json --output result.json</code></pre>
+    <p>Or add it to one project and invoke it through npm:</p>
+    <pre><code>npm install --save-dev map-json-by-json
+npm exec -- map-json-by-json --template template.json --input source.json</code></pre>
+    <p>The CLI accepts JSON templates with string paths, <code>$from</code>, and <code>$value</code>. Use the JavaScript API for function-based v2 rules.</p>
+  </section>
+
+  <section class="card"><h2>Use from a browser with a CDN</h2>
+    <p>Pin the package version so your page keeps a predictable release:</p>
+    <pre><code>&lt;script type="module"&gt;
+  import { mapJson } from "https://cdn.jsdelivr.net/npm/map-json-by-json@2.0.0/src/v2/browser.js";
+
+  const result = mapJson({ label: "name" }, { name: "Cable" });
+  document.querySelector("#result").textContent = JSON.stringify(result);
+&lt;/script&gt;</code></pre>
+    <p>After release <code>2.1.0</code> is published, the strict v3 browser module can be imported from <code>https://cdn.jsdelivr.net/npm/map-json-by-json@2.1.0/src/v3/index.js</code>.</p>
+  </section>
+
+  <section class="card"><h2>Build the documentation app</h2>
+    <pre><code>npm install
+npm run docs:build</code></pre>
+    <p>Vite writes the v2 playground build to <code>docs/dist/v2</code>. Run <code>npm run docs:dev</code> for Vite's local server, or <code>npm run docs:serve</code> to serve the working tree's local v2 module.</p>
+  </section>
+</main></body>
+</html>
