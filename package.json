@@ -37,6 +37,7 @@
   "scripts": {
     "test": "node --test test/map.test.js",
     "test:v2": "node --test test/map.test.js",
+    "test:v3": "node --test test/v2/index.js",
     "docs:serve": "node scripts/serve-docs.js",
     "docs:dev": "vite --config vite.config.js",
     "docs:build": "vite build --config vite.config.js",
